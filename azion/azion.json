@@ -3,7 +3,7 @@
   "bucket": "astro-test-import-github",
   "preset": "astro",
   "env": "production",
-  "prefix": "20250401212931",
+  "prefix": "20250401183633",
   "not-first-run": true,
   "function": {
     "id": 42200,
