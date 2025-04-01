@@ -1,48 +1,24 @@
 {
-	"name": "Kelly Bowlin",
-	"profession": "Web Designer",
+	"name": "O Bruno Germano",
+	"profession": "DevRel 🥑 | Engenheiro de Software | Criador de conteúdo",
 	"links": [
 		{
-			"url": "#",
-			"icon": "link",
-			"title": "Personal Portfolio",
-			"description": "All my latest design projects"
-		},
-		{
-			"url": "#",
+			"url": "https://youtube.com/@egermano",
 			"icon": "youtube-fill",
-			"title": "Youtube Channel",
-			"description": "All my latest design projects"
+			"title": "Canal do YouTube",
+			"description": "Vídeos sobre tecnologia, programação e projetos DIY"
 		},
 		{
-			"url": "#",
-			"icon": "shopping-bag-line",
-			"title": "Template Store",
-			"description": "Discover templates that suit you"
-		},
-		{
-			"url": "#",
+			"url": "https://egermano.com",
 			"icon": "link",
-			"title": "Design Podcast",
-			"description": "Every Friday a new episode"
+			"title": "Site Pessoal",
+			"description": "Meu portfólio e blog"
 		},
 		{
-			"url": "#",
+			"url": "https://instagram.com/egermano",
 			"icon": "instagram-line",
-			"title": "Instagram Profile",
-			"description": "Designer lifestyle and more"
-		},
-		{
-			"url": "#",
-			"icon": "dribbble-line",
-			"title": "Dribbble Shots",
-			"description": "Know more about my work"
-		},
-		{
-			"url": "#",
-			"icon": "link",
-			"title": "Free Resources",
-			"description": "Collection of free resources"
+			"title": "Perfil do Instagram",
+			"description": "Fotos e vídeos do meu dia a dia"
 		}
 	]
 }
