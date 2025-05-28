@@ -1,8 +1,8 @@
 ---
 interface Props {
-	title: string;
-	description?: string;
-	keywords?: string;
+  title: string;
+  description?: string;
+  keywords?: string;
 }
 
 const { title } = Astro.props;
@@ -10,40 +10,48 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400&display=swap" rel="stylesheet">
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="keywords" content={Astro.props.keywords} />
-		<meta name="description" content={Astro.props.description || ""} />
-		<meta name="author" content="Bruno Germano" />
-		<meta name="theme-color" content="#27272A" />
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="keywords" content={Astro.props.keywords} />
+    <meta name="description" content={Astro.props.description || ""} />
+    <meta name="author" content="Bruno Germano" />
+    <meta name="theme-color" content="#27272A" />
+  </head>
+  <body>
+    <slot />
+    <script is:inline
+      src="https://assets.azion.com/global/bot-manager/client-fingerprint/azfp-1.0.0.min.js"
+    ></script>
+  </body>
 </html>
 <style is:global>
-	:root {
-        --zinc-50: #FAFAFA;
-        --zinc-400: #A1A1AA;
-        --zinc-800: #27272A;
-        --zinc-900: #18181B;
-        --zinc-950: #09090B;
-	}
+  :root {
+    --zinc-50: #fafafa;
+    --zinc-400: #a1a1aa;
+    --zinc-800: #27272a;
+    --zinc-900: #18181b;
+    --zinc-950: #09090b;
+  }
 
-    *, *::before, *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-	html {
-		font-family: 'Satoshi', system-ui, sans-serif;
-		background: var(--zinc-950);
-        color: var(--zinc-50)
-	}
+  html {
+    font-family: "Satoshi", system-ui, sans-serif;
+    background: var(--zinc-950);
+    color: var(--zinc-50);
+  }
 </style>
