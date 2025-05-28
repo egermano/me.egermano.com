@@ -3,7 +3,7 @@
   "bucket": "meegermanocom",
   "preset": "astro",
   "env": "production",
-  "prefix": "20250523205124",
+  "prefix": "20250528123838",
   "not-first-run": true,
   "function": {
     "id": 45269,
@@ -19,10 +19,10 @@
     "name": "__DEFAULT__"
   },
   "domain": {
-    "id": 1748032967,
+    "id": 1748383323,
     "name": "me.egermano.com",
-    "domain_name": "vp4srh3s59.map.azionedge.net",
-    "url": "https://vp4srh3s59.map.azionedge.net"
+    "domain_name": "hyv8oj5hwa.map.azionedge.net",
+    "url": "https://me.egermano.com"
   },
   "rt-purge": {
     "purge_on_publish": true
