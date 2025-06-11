@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Profile from "../components/Profile.astro";
 import List from "../components/List.astro";
 import Shadow from "../components/Shadow.astro";
+import LastVideo from "../components/LastVideo.astro";
 ---
 
 <Layout
@@ -11,6 +12,7 @@ import Shadow from "../components/Shadow.astro";
 >
   <main class="container" id="container" style="overflow: hidden;">
     <Profile />
+    <LastVideo />
     <List />
     <Shadow />
   </main>
@@ -41,12 +43,12 @@ import Shadow from "../components/Shadow.astro";
       if (shadow.style.position === "absolute") {
         shadow.style.position = "relative";
         mainContent.style.overflow = "auto";
-        shadowButton.children[0].textContent = "Show Less";
+        shadowButton.children[0].textContent = "Mostrar menos";
       } else {
         shadow.style.position = "absolute";
         mainContent.style.overflow = "hidden";
         mainContent.scroll(0, 0);
-        shadowButton.children[0].textContent = "Explore More";
+        shadowButton.children[0].textContent = "Mostrar mais";
       }
     });
 
