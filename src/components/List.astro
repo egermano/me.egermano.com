@@ -6,6 +6,7 @@ const items = dataList.links;
 ---
 
 <div class="list" id="list">
+  <h2 class="center">Links</h2>
   {
     items.map((item) => {
       return (
@@ -21,8 +22,13 @@ const items = dataList.links;
 </div>
 
 <style>
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .list {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: grid;
     gap: 1rem;
   }
