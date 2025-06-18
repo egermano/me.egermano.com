@@ -1,7 +1,28 @@
 ---
 import { Image } from "astro:assets";
+import * as marked from "marked";
 import UserProfileImage from "../assets/user-profile-image.png";
 import dataList from "../data/user.json";
+
+const renderer = {
+  paragraph({ tokens }) {
+    const text = this.parser.parseInline(tokens);
+    return `<p class="profile-profession">${text}</p>`;
+  },
+  link({ tokens, href }) {
+    console.log(tokens, href);
+    const text = this.parser.parseInline(tokens);
+    return `<a href="${href}" target="_blank" style="color: var(--zinc-400)">${text}</a>`;
+  },
+};
+
+marked.use({ renderer });
+
+const profession = marked.parse(dataList.profession, {
+  async: false,
+  gfm: false,
+});
+console.log(profession);
 ---
 
 <header class="profile">
@@ -9,7 +30,7 @@ import dataList from "../data/user.json";
     <figure class="profile-picture">
       <Image
         src={UserProfileImage}
-        alt="This is me!"
+        alt="Ess sou eu! Foto do Bruno Germano em seu escritório segurando o óculos."
         width={100}
         height={100}
         loading="lazy"
@@ -20,7 +41,7 @@ import dataList from "../data/user.json";
   </div>
   <div class="profile-data">
     <h1 class="profile-name">{dataList.name}</h1>
-    <p class="profile-profession">{dataList.profession}</p>
+    <Fragment set:html={profession} />
   </div>
 </header>
 
@@ -57,7 +78,6 @@ import dataList from "../data/user.json";
     margin-top: 1.125rem;
     text-align: center;
   }
-
   .profile-name {
     font-size: 1.125rem;
     font-weight: normal;
