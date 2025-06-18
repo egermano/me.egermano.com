@@ -1,24 +1,30 @@
 {
-	"name": "O Bruno Germano",
-	"profession": "DevRel 🥑 | Engenheiro de Software | Criador de conteúdo",
-	"links": [
-		{
-			"url": "https://youtube.com/@egermano",
-			"icon": "youtube-fill",
-			"title": "Canal do YouTube",
-			"description": "Vídeos sobre tecnologia, programação e projetos DIY"
-		},
-		{
-			"url": "https://egermano.com",
-			"icon": "link",
-			"title": "Site Pessoal",
-			"description": "Meu portfólio e blog"
-		},
-		{
-			"url": "https://instagram.com/egermano",
-			"icon": "instagram-line",
-			"title": "Perfil do Instagram",
-			"description": "Fotos e vídeos do meu dia a dia"
-		}
-	]
+  "name": "O Bruno Germano",
+  "profession": "DevRel 🥑 @ [Azion](https://azion.com) | Engenheiro de Software | Criador de conteúdo",
+  "links": [
+    {
+      "url": "https://youtube.com/@egermano",
+      "icon": "youtube-fill",
+      "title": "Canal do YouTube",
+      "description": "Vídeos sobre tecnologia, programação e projetos DIY"
+    },
+    {
+      "url": "https://egermano.com",
+      "icon": "link",
+      "title": "Site Pessoal",
+      "description": "Meu portfólio e blog"
+    },
+    {
+      "url": "https://instagram.com/egermano",
+      "icon": "instagram-line",
+      "title": "Perfil do Instagram",
+      "description": "Fotos e vídeos do meu dia a dia"
+    },
+    {
+      "url": "https://console.azion.com",
+      "icon": "terminal-box-line",
+      "title": "Azion",
+      "description": "Ganhe $300 em créditos para publicar seus projetos"
+    }
+  ]
 }
