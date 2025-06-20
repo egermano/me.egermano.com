@@ -1,0 +1,90 @@
+---
+// https://yv88ungobt.map.azionedge.net/last-video?channelId=UCBWbWViVqDHckknir8PIIdg
+
+const egermanoChannelId = "UCBWbWViVqDHckknir8PIIdg";
+const response = await fetch(
+  `https://yv88ungobt.map.azionedge.net/last-video?channelId=${egermanoChannelId}`
+);
+const data = await response.json();
+const id = data["yt:videoId"][0];
+const title = data.title[0];
+const link = data.link[0].$.href;
+const thumbnail = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+const width = data["media:group"][0]["media:thumbnail"][0]["$"].width || 480;
+const height = data["media:group"][0]["media:thumbnail"][0]["$"].height || 390;
+---
+
+<div class="last-video" id="last-video">
+  <h2 class="center">Último vídeo</h2>
+  <div class="center">
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <figure>
+        <img
+          src={thumbnail}
+          alt={title}
+          style=""
+          width={width}
+          height={height}
+          alt={`Último vídeo: ${title}`}
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+        />
+        <i class="youtube-play ri-youtube-fill"></i>
+      </figure>
+      <span style="text-align: center; margin-top: 0.5rem; display: block;">
+        {title}
+      </span>
+    </a>
+  </div>
+
+  <style>
+    .last-video {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+
+      a {
+        text-decoration: none;
+        color: var(--zinc-50);
+      }
+
+      figcaption {
+        font-size: 0.875rem;
+        color: var(--zinc-50);
+        margin-top: 0.5rem;
+        text-decoration: none;
+      }
+    }
+    .last-video figure {
+      position: relative;
+      & > img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        object-fit: cover;
+      }
+
+      .youtube-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 6rem;
+        color: red;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover .youtube-play {
+        opacity: 1;
+      }
+    }
+
+    .last-video .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</div>
