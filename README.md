@@ -1,29 +1,24 @@
-# Astrolink: Template to share about yourself
+# me.egermano.com
 
-```sh
-git clone https://github.com/alamguardin/Astrolink.git
+Personal link-in-bio site built with [Astro](https://astro.build/), deployed using [Azion](https://azion.com).
+
+![Preview](src/assets/screenshot-app.png)
+
+## 🚀 Project Structure
+
 ```
-
-
-![Preview](/src/assets/screenshot-app.png)
-
-## 🚀 How to change the content?
-
-To change the content of the templates, simply locate the ```user.json``` file inside the data folder. You can change the name, profession, and the links you want.
-
-```text
-/
+.
 ├── public/
 │   └── favicon.svg
 ├── src/
 │   ├── assets/
-│   │   └── screenshot-app.png
+│   │   ├── screenshot-app.png
 │   │   └── user-profile-image.png
 │   ├── components/
-│   │   └── icons/
-│   │   └── Link.astro
-│   │   └── List.astro
-│   │   └── Profile.astro
+│   │   ├── LastVideo.astro
+│   │   ├── Link.astro
+│   │   ├── List.astro
+│   │   ├── Profile.astro
 │   │   └── Shadow.astro
 │   ├── data/
 │   │   └── user.json
@@ -31,22 +26,61 @@ To change the content of the templates, simply locate the ```user.json``` file i
 │   │   └── Layout.astro
 │   └── pages/
 │       └── index.astro
-└── package.json
+├── azion/
+│   ├── args.json
+│   ├── azion.json
+│   └── files.json
+├── .edge/
+│   ├── manifest.json
+│   ├── worker.js
+│   └── storage/
+│       ├── favicon.svg
+│       ├── index.html
+│       └── _astro/
+├── .vscode/
+│   ├── extensions.json
+│   └── launch.json
+├── astro.config.mjs
+├── azion.config.mjs
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-Oh, additionally, you have the entire iconography of [Remixicons](https://remixicon.com/) available. You just need to write the name of the icon within the ```"icon"``` key of each link in the ```user.json``` file.
+## ✏️ How to change the content?
 
+Edit [`src/data/user.json`](src/data/user.json) to update your name, profession, and links.  
+You can use any [Remixicon](https://remixicon.com/) icon by specifying its name in the `"icon"` field of each link.
 
+## 🧑‍💻 Local Development
 
-## 🧞 Commands
+Install dependencies:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+npm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Start the local dev server:
+
+```sh
+npm run dev
+```
+
+Build for production:
+
+```sh
+npm run build
+```
+
+Preview the production build locally:
+
+```sh
+npm run preview
+```
+
+## 🚀 Deployment
+
+This project is configured for deployment on [Azion Edge Functions](https://azion.com/).  
+Configuration files: [`azion.config.mjs`](azion.config.mjs), [`azion/azion.json`](azion/azion.json), and [`.edge/manifest.json`](.edge/manifest.json).
+
+## 📝 License
