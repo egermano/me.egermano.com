@@ -10,7 +10,6 @@ const renderer = {
     return `<p class="profile-profession">${text}</p>`;
   },
   link({ tokens, href }) {
-    console.log(tokens, href);
     const text = this.parser.parseInline(tokens);
     return `<a href="${href}" target="_blank" style="color: var(--zinc-400)">${text}</a>`;
   },
@@ -22,7 +21,6 @@ const profession = marked.parse(dataList.profession, {
   async: false,
   gfm: false,
 });
-console.log(profession);
 ---
 
 <header class="profile">

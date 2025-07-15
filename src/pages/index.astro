@@ -61,4 +61,14 @@ import LastVideo from "../components/LastVideo.astro";
       mainContent.style.overflow = "auto";
     }
   })();
+
+  if (typeof window.addEventListener === "function") {
+    window.addEventListener("load", function () {
+      if (window.azpulse === undefined) {
+        var pulse = document.createElement("script");
+        pulse.src = "//client.azionrum.net/8900e/azion-pulse.js";
+        document.body.appendChild(pulse);
+      }
+    });
+  }
 </script>
