@@ -1,0 +1,125 @@
+name: me.egermano.com
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: egermano-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  lint-test-build:
+    name: Test and Build egermano.com
+    runs-on: ubuntu-latest
+    env:
+      LANG: pt_BR.UTF-8
+      LC_ALL: pt_BR.UTF-8
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup UTF-8 Locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen pt_BR.UTF-8
+          sudo update-locale LANG=pt_BR.UTF-8
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.15.0
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm build
+
+  azion-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: lint-test-build
+    runs-on: ubuntu-latest
+    name: Deploy egermano.com to Azion
+    environment: production
+    env:
+      LANG: pt_BR.UTF-8
+      LC_ALL: pt_BR.UTF-8
+
+    permissions:
+      contents: write
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup UTF-8 Locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen pt_BR.UTF-8
+          sudo update-locale LANG=pt_BR.UTF-8
+
+      - name: Setup Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Azion CLI
+        run: |
+          curl -o azionlinux https://downloads.azion.com/linux/x86_64/azion
+          sudo mv azionlinux /usr/bin/azion
+          sudo chmod u+x /usr/bin/azion
+
+      - name: Azion Deploy
+        run: |
+          azion -t ${{ secrets.AZION_PERSONAL_TOKEN }}
+          azion deploy -y --no-color --debug --local
+
+      - name: Commit Azion files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "[skip ci] Update azion files"
+            git push origin ${{ github.head_ref || github.ref_name }}
+          fi
