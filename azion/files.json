@@ -28,11 +28,15 @@
     "hash": "bf756be51d95e5e5b50ddcc1c96c2202dc6960f38118f30528d7b3462d1c7728"
    },
    {
+    "name": ".edge/storage/favicon.ico",
+    "hash": "c0806863af1896b0febd47dedc0014cd38a624ca7377940037d7fef29431133e"
+   },
+   {
     "name": ".edge/storage/favicon.svg",
     "hash": "2d7a310283d6f9cc753210d83224cd6db6348cb82a5536348884e5831d46203f"
    },
    {
     "name": ".edge/storage/index.html",
-    "hash": "4063c505634f81bdbcee11a7970a5fb9a275ed1a0fc705d9f975d02fe9d5eda1"
+    "hash": "b18948db9a92bda0c77f64b40c19b956dc1c3072703e9873dd3560b724ed37f9"
    }
   ]
