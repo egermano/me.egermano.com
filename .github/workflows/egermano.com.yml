@@ -8,6 +8,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '0 15 * * *'  # Daily at 15:00 UTC = noon in Sao Paulo (UTC-3, 11:00 AM during DST)
 
 concurrency:
   group: egermano-${{ github.head_ref || github.ref_name }}
@@ -64,7 +66,7 @@ jobs:
         run: pnpm build
 
   azion-deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
     needs: lint-test-build
     runs-on: ubuntu-latest
     name: Deploy egermano.com to Azion
