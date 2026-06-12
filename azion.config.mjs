@@ -8,27 +8,48 @@
  * 2. Use defineConfig:
  *    import { defineConfig } from 'azion'
  *
+ * 3. Replace the configuration with defineConfig:
+ *    export default defineConfig({
+ *      // Your configuration here
+ *    })
+ *
  * For more configuration options, visit:
- * https://github.com/aziontech/azion
+ * https://github.com/aziontech/lib/tree/main/packages/config
  */
 
 export default {
   build: {
     preset: 'astro',
-    polyfills: true,
-    worker: false
+    polyfills: true
   },
   origin: [
     {
       name: 'origin-storage-default',
-      type: 'object_storage'
+      type: 'object_storage',
+      prefix: ''
+    }
+  ],
+  functions: [
+    {
+      name: 'handler',
+      path: '.edge/worker.js',
+      args: {}
     }
   ],
   rules: {
     request: [
       {
         name: 'Set Storage Origin for All Requests',
-        match: '^\\/',
+        description: '',
+        active: true,
+        criteria: [
+          {
+            variable: '${uri}',
+            operator: 'matches',
+            conditional: 'if',
+            inputValue: '^\\/'
+          }
+        ],
         behavior: {
           setOrigin: {
             name: 'origin-storage-default',
@@ -38,8 +59,17 @@ export default {
       },
       {
         name: 'Deliver Static Assets',
-        match:
-          '.(css|js|ttf|woff|woff2|pdf|svg|jpg|jpeg|gif|bmp|png|ico|mp4|json|xml|html)$',
+        description: '',
+        active: true,
+        criteria: [
+          {
+            variable: '${uri}',
+            operator: 'matches',
+            conditional: 'if',
+            inputValue:
+              '.(css|js|ttf|woff|woff2|pdf|svg|jpg|jpeg|gif|bmp|png|ico|mp4|json|xml|html)$'
+          }
+        ],
         behavior: {
           setOrigin: {
             name: 'origin-storage-default',
@@ -50,24 +80,37 @@ export default {
       },
       {
         name: 'Redirect to index.html',
-        match: '.*/$',
+        description: '',
+        active: true,
+        criteria: [
+          {
+            variable: '${uri}',
+            operator: 'matches',
+            conditional: 'if',
+            inputValue: '.*/$'
+          }
+        ],
         behavior: {
           rewrite: '${uri}index.html'
         }
       },
       {
         name: 'Redirect to index.html for Subpaths',
-        match: '^(?!.*\\/$)(?![\\s\\S]*\\.[a-zA-Z0-9]+$).*',
+        description: '',
+        active: true,
+        criteria: [
+          {
+            variable: '${uri}',
+            operator: 'matches',
+            conditional: 'if',
+            inputValue: '^(?!.*\\/$)(?![\\s\\S]*\\.[a-zA-Z0-9]+$).*'
+          }
+        ],
         behavior: {
           rewrite: '${uri}/index.html'
         }
       }
-    ]
-  },
-  functions: [
-    {
-      name: 'handler',
-      path: '.edge/worker.js'
-    }
-  ]
+    ],
+    response: []
+  }
 }

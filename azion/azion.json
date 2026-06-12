@@ -32,6 +32,11 @@
       "origin-id": 217260,
       "origin-key": "402fe198-0e0d-4387-8cdf-aa0b65bfdf80",
       "name": "origin-storage-default"
+    },
+    {
+      "origin-id": 217259,
+      "origin-key": "da91733a-1f0e-439e-9d3a-e63727b426e7",
+      "name": "me.egermano.com_single"
     }
   ],
   "rules-engine": {
@@ -56,8 +61,27 @@
         "id": 413791,
         "name": "Redirect to index.html for Subpaths",
         "phase": "request"
+      },
+      {
+        "id": 442962,
+        "name": "Redirects HTTP to HTTPS",
+        "phase": "request"
+      },
+      {
+        "id": 463034,
+        "name": "Cache Policy",
+        "phase": "request"
       }
     ]
   },
-  "cache-settings": []
+  "cache-settings": [
+    {
+      "id": 246525,
+      "name": "Local cache"
+    },
+    {
+      "id": 255315,
+      "name": "Requests de produtos"
+    }
+  ]
 }
