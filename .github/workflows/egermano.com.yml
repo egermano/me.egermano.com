@@ -9,7 +9,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 15 * * *'  # Daily at 15:00 UTC = noon in Sao Paulo (UTC-3, 11:00 AM during DST)
+    - cron: "0 15 * * *" # Daily at 15:00 UTC = noon in Sao Paulo (UTC-3, 11:00 AM during DST)
 
 concurrency:
   group: egermano-${{ github.head_ref || github.ref_name }}
@@ -78,7 +78,6 @@ jobs:
     permissions:
       contents: write
 
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -112,6 +111,7 @@ jobs:
       - name: Azion Deploy
         run: |
           azion -t ${{ secrets.AZION_PERSONAL_TOKEN }}
+          azion build -y --debug
           azion deploy -y --no-color --debug --local
 
       - name: Commit Azion files
